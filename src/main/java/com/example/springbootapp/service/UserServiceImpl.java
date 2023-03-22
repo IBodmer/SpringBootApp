@@ -3,6 +3,7 @@ package com.example.springbootapp.service;
 import com.example.springbootapp.model.User;
 import com.example.springbootapp.repo.UserRepo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class UserServiceImpl implements UserService {
         this.userRepo = userRepo;
     }
 
-
+    @Transactional
     @Override
     public void save(User user) {
         userRepo.save(user);
@@ -29,7 +30,7 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll() {
         return userRepo.findAll();
     }
-
+    @Transactional
     @Override
     public void update(Long id, User user) {
         User user1 = userRepo.findById(id).orElseThrow(() -> new RuntimeException("ne po plany"));
@@ -39,7 +40,7 @@ public class UserServiceImpl implements UserService {
         user1.setAge(user.getAge());
         userRepo.save(user1);
     }
-
+    @Transactional
     @Override
     public void delete(Long id) {
         userRepo.deleteById(id);

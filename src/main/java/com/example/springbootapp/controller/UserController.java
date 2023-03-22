@@ -56,7 +56,7 @@ public class UserController {
         return "edit_user";
     }
 
-    @PostMapping("/edit/{id}")
+    @PatchMapping("/edit/{id}")
     public String updateUserSubmit(@PathVariable Long id, @ModelAttribute User user) {
         userService.update(id, user);
         return "redirect:/";
@@ -64,7 +64,7 @@ public class UserController {
 
 
 //как в буте настроить, чтобы таймлиф видел patch и delete запросы я так и не нашел, если можно подскажите
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteUserSubmit(@PathVariable Long id) {
         userService.delete(id);
         return "redirect:/";
